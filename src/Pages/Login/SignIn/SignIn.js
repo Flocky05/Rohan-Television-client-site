@@ -3,8 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Contexs/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
-import img from '../../images/google/google.png'
-import useChangeTitle from '../../hooks/changeTitle';
+import img from '../../../images/google/google.png'
+import useChangeTitle from '../../../hooks/changeTitle';
 
 export const SignIn = () => {
     const { signIn, providerLogin, setLoading } = useContext(AuthContext);
@@ -54,7 +54,7 @@ export const SignIn = () => {
     return (
         <div className="relative">
             <img
-                src="https://img.freepik.com/free-photo/abstract-luxury-gradient-blue-background-smooth-dark-blue-with-black-vignette-studio-banner_1258-56228.jpg?w=1060&t=st=1668016846~exp=1668017446~hmac=6a67b6d9493dfe9005ef2f3aaaeece117b6066c4eb9480e2a9197f688cd46677"
+                src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37357.jpg?w=1380&t=st=1669408232~exp=1669408832~hmac=1c1aa68dc4fb4b39db3c8256e5146e638d571bc227cd2ccb535fbe7d2d2e35bb"
                 className="absolute inset-0 object-cover w-full h-full"
                 alt=""
             />
@@ -103,7 +103,7 @@ export const SignIn = () => {
                                     <div className="mt-4 mb-2 sm:mb-4">
                                         <button
                                             type="submit"
-                                            className="bg-blue-600 hover:bg-blue-700 text-white w-full p-2 rounded-lg"
+                                            className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded mr-2 w-full"
                                         >
                                             Login
                                         </button>

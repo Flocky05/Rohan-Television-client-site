@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Contexs/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
+
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success("LogOut successfully");
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
     return (
         <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
             <div class="relative flex items-center justify-between">
@@ -75,27 +88,39 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <ul class="flex items-center hidden space-x-8 lg:flex">
-                    <li>
-                        <Link
-                            to="/signin"
-                            aria-label="Sign in"
-                            title="Sign in"
-                            class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                            Sign in
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/signup"
-                            className="h-14 bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded"
-                            aria-label="Sign up"
-                            title="Sign up"
-                        >
-                            Sign up
-                        </Link>
-                    </li>
+                <ul className='list-none'>
+                    {
+                        user ?
+                            <>
+                                <li>
+                                    <div onClick={handleLogOut}
+                                        className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
+                                    >
+                                        <button className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded mr-2 w-full">Log Out</button>
+                                    </div>
+                                </li>
+                            </> :
+                            <>
+                                <li className='flex space-between items-center'>
+                                    <Link
+                                        to="/signin"
+                                        className='font-medium tracking-wide hover:text-blue-700 hover:text-bold'
+                                        aria-label="Login"
+                                        title="Login"
+                                    >
+                                        SignIn
+                                    </Link>
+                                    <Link
+                                        to="/signup"
+                                        className='font-medium tracking-wide p-8 hover:text-blue-700 hover:text-bold'
+                                        aria-label="Login"
+                                        title="Login"
+                                    >
+                                        SignUp
+                                    </Link>
+                                </li>
+                            </>
+                    }
                 </ul>
                 <div class="lg:hidden">
                     <button

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import img from '../../images/SignUp/signUp.webp'
-import { AuthContext } from '../../Contexs/AuthProvider/AuthProvider';
+import img from '../../../images/SignUp/signUp.webp'
+import { AuthContext } from '../../../Contexs/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
-import img1 from '../../images/google/google.png'
-import useChangeTitle from '../../hooks/changeTitle';
+import img1 from '../../../images/google/google.png'
+import useChangeTitle from '../../../hooks/changeTitle';
 
 export const SignUp = () => {
     useChangeTitle('SignUp');
@@ -74,25 +74,26 @@ export const SignUp = () => {
 
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Login" />
+                            <input className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded mr-2 w-full" type="submit" value="Login" />
+                        </div>
+                        <div className="mt-4 mb-2 sm:mb-4">
+                            <button onClick={handleGoogleSignIn}
+                                type="submit"
+                                className="bg-white w-full p-2 rounded-lg border border-blue-600">
+                                <div className='flex space-x-5 justify-around algin-iteam-center px-8'>
+                                    <img className='w-8' src={img1} alt="" />
+                                    <div className='text-xl'>
+                                        SignIn with Google
+                                    </div>
+                                </div>
+                            </button>
                         </div>
                     </form>
                     <p className='text-center '>Have an account <Link className='text-blue-600 hover:text-blue-700 font-bold' to="/signin">Login</Link> </p>
+
                 </div>
             </div>
-            <div className="mt-4 mb-2 sm:mb-4">
-                <button onClick={handleGoogleSignIn}
-                    type="submit"
-                    className="bg-white w-full p-2 rounded-lg border border-blue-600"
-                >
-                    <div className='flex space-x-5 justify-around algin-iteam-center px-8'>
-                        <img className='w-8' src={img1} alt="" />
-                        <div className='text-xl'>
-                            SignIn with Google
-                        </div>
-                    </div>
-                </button>
-            </div>
+
         </div>
     );
 };
