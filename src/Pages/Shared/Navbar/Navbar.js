@@ -53,7 +53,7 @@ const Navbar = () => {
                                 title="Our product"
                                 class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                             >
-                                Product
+                                Home
                             </Link>
                         </li>
                         <li>
@@ -78,6 +78,16 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
+                                to="/blog"
+                                aria-label="Product pricing"
+                                title="Product pricing"
+                                class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                                Blog
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
                                 to="/aboutus"
                                 aria-label="About us"
                                 title="About us"
@@ -92,7 +102,15 @@ const Navbar = () => {
                     {
                         user ?
                             <>
-                                <li>
+                                <li className='flex space-between items-center'>
+                                    <Link
+                                        to="/dashboard"
+                                        aria-label="About us"
+                                        title="About us"
+                                        class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400 mr-2"
+                                    >
+                                        DashBoard
+                                    </Link>
                                     <div onClick={handleLogOut}
                                         className="font-medium tracking-wide  transition-colors duration-200 hover:text-teal-accent-400"
                                     >
