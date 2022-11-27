@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const TelevisionCard = ({ television }) => {
@@ -13,7 +14,7 @@ const TelevisionCard = ({ television }) => {
                 <h2 className="card-title text-white">{title}</h2>
                 <p>{dtail.slice(0, 50)}...</p>
                 <div className="card-actions justify-end">
-                    <button className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded mr-2 ">See all products</button>
+                    <Link to={`/category/${_id}`}><button className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-4 py-2 rounded mr-2 ">See all products</button></Link>
                 </div>
             </div>
         </div>

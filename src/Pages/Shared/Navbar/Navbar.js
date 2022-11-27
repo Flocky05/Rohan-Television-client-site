@@ -58,12 +58,12 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                to="/"
+                                to="/category"
                                 aria-label="Our product"
                                 title="Our product"
                                 class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                             >
-                                Features
+                                Category
                             </Link>
                         </li>
                         <li>
