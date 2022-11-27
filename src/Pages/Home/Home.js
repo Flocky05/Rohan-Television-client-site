@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Categories from '../Categories/Categories';
 import Team from '../Team/Team';
 
 export const Home = () => {
@@ -54,6 +55,7 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
+            <Categories></Categories>
             <Team></Team>
         </div>
     );
