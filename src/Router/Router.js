@@ -8,6 +8,7 @@ import SignUp from "../Pages/Login/SignUp/SignUp"
 import Main from "../Pages/Main/Main"
 import PageError from "../Pages/PageError/PageError"
 import Products from "../Pages/Products/Products"
+import PrivetRoute from "./PrivetRoute/PrivetRoute"
 
 export const routes = createBrowserRouter([
     {
@@ -41,7 +42,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Products></Products>,
+                element: <PrivetRoute> <Products></Products></PrivetRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/televisions/${params.id}`)
             },
             {
