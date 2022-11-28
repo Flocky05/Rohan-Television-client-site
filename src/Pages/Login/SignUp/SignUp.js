@@ -67,6 +67,14 @@ export const SignUp = () => {
                             <input type="text" name='email' placeholder="email" className="input input-bordered" />
                         </div>
                         <div className="form-control">
+                            <select className="select select-bordered w-full max-w-xs">
+                                <option disabled selected>What kind of Account do you need</option>
+                                <option>Buyer</option>
+                                <option>seller</option>
+                            </select>
+
+                        </div>
+                        <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
