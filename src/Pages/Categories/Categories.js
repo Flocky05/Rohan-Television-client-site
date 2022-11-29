@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import useChangeTitle from '../../hooks/changeTitle.jsx';
 import TelevisionCard from './TelevisionCard/TelevisionCard.js';
 import { BeatLoader } from 'react-spinners';
+import server from '../../utils/axios-client.js';
 
 const Categories = () => {
     const [televisions, setTelevision] = useState([]);
     useChangeTitle('Home');
     useEffect(() => {
-        fetch(`http://localhost:5000/televisions`)
-            .then(res => res.json())
-            .then(data => setTelevision(data));
+        server.get('televisions').then(res => setTelevision(res.data))
     })
     return (
         <div>
