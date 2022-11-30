@@ -12,25 +12,24 @@ const Product = ({ product }) => {
     _id,
     image,
     location,
-    resale_price,
+    resalePrice,
     original_price,
     use_years,
-    seller_name,
+    SellerName,
   } = product;
-  console.log(product);
+  console.log("product", product);
   const onSubmit = (data) => {
-    console.log(data);
     toast
       .promise(
         server.post("order", {
           television_id: _id,
-          resale_price,
+          resalePrice: resalePrice,
           image,
           original_price,
           location: data.location,
-          seller_name,
+          sellerName: SellerName,
           buyerEmail: user?.email,
-          buyerName: user?.displayName,
+          buyerName: user?.name,
         }),
         { error: "Something wrong", success: "done", loading: "wait" }
       )
@@ -45,11 +44,11 @@ const Product = ({ product }) => {
         </figure>
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
-          <p>Location:{location}</p>
-          <p>Orginal Price:{resale_price}</p>
-          <p>Resale Price:{original_price}</p>
-          <p>Year of use:{use_years}</p>
-          <p>seller_name:{seller_name}</p>
+          <p>Location: {location}</p>
+          <p>Resale Price: {resalePrice}</p>
+          <p>Original Price: {original_price}</p>
+          <p>Year of use: {use_years}</p>
+          <p>seller name: {SellerName}</p>
 
           <div className="card-actions justify-end">
             <div className="">
@@ -78,7 +77,7 @@ const Product = ({ product }) => {
                         type="text"
                         name="name"
                         disabled
-                        defaultValue={user?.displayName}
+                        value={user?.name}
                         className="input input-bordered"
                       />
                     </div>

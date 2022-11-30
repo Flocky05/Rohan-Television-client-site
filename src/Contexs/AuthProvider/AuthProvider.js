@@ -1,63 +1,69 @@
-import React from 'react';
-import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import app from '../../Firebase/firebase.config';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React from "react";
+import { createContext } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import app from "../../Firebase/firebase.config";
+import { useState } from "react";
+import { useEffect } from "react";
+import server from "../../utils/axios-client";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser);
-            setUser(currentUser);
-            setLoading(false)
-        });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      server
+        .get(`user?email=${currentUser?.email}`)
+        .then((_) => setUser(_.data));
 
-        return () => {
-            return unsubscribe();
-        }
-    }, [])
+      setLoading(false);
+    });
 
-    const createUser = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
-    }
+    return () => {
+      return unsubscribe();
+    };
+  }, []);
 
-    const providerLogin = (provider) => {
-        setLoading(true);
-        return signInWithPopup(auth, provider);
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
+  const providerLogin = (provider) => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
+  const signIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-    }
-    const signIn = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password);
-    }
+  const logOut = () => {
+    localStorage.removeItem("genius-token");
+    setLoading(true);
+    return signOut(auth);
+  };
 
-    const logOut = () => {
-        localStorage.removeItem('genius-token');
-        setLoading(true);
-        return signOut(auth);
-    }
+  const authInfo = {
+    user,
+    loading,
+    setLoading,
+    createUser,
+    logOut,
+    signIn,
+    providerLogin,
+  };
 
-
-
-    const authInfo = {
-        user,
-        loading,
-        setLoading,
-        createUser, logOut,
-        signIn, providerLogin
-    }
-
-    return (
-        <AuthContext.Provider value={authInfo}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
