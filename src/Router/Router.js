@@ -54,7 +54,9 @@ export const routes = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/televisions/${params.id}`),
+          fetch(
+            `https://rohan-television-server.vercel.app/televisions/${params.id}`
+          ),
       },
       {
         path: "/*",

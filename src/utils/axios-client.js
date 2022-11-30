@@ -1,4 +1,7 @@
 import axios from "axios";
 
-const server = axios.create({ baseURL: 'http://localhost:5000', timeout: 5000 })
-export default server
+const server = axios.create({
+  baseURL: "https://rohan-television-server.vercel.app",
+  timeout: 5000,
+});
+export default server;

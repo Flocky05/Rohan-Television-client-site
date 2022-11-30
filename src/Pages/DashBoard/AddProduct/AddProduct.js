@@ -2,18 +2,14 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../Contexs/AuthProvider/AuthProvider";
+import server from "../../../utils/axios-client";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: categories = [] } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/televisions");
-      const data = await res.json();
-      return data;
-    },
-  });
+  const { data: categories = [] } = useQuery(["categories"], () =>
+    server.get("televisions")
+  );
 
   const handleAddProduct = (event) => {
     event.preventDefault();
