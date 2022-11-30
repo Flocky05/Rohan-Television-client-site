@@ -12,23 +12,25 @@ const Product = ({ product }) => {
     _id,
     image,
     location,
-    resalePrice,
-    originalPrice,
-    yearsOfUse,
-    SellerName,
+    resale_price,
+    original_price,
+    use_years,
+    seller_name,
   } = product;
+  console.log(product);
   const onSubmit = (data) => {
     console.log(data);
     toast
       .promise(
         server.post("order", {
           television_id: _id,
-          resalePrice,
+          resale_price,
           image,
-          originalPrice,
+          original_price,
           location: data.location,
-          SellerName,
-          BuyerName: user?.displayName,
+          seller_name,
+          buyerEmail: user?.email,
+          buyerName: user?.displayName,
         }),
         { error: "Something wrong", success: "done", loading: "wait" }
       )
@@ -44,10 +46,11 @@ const Product = ({ product }) => {
         <div className="card-body">
           <h2 className="card-title">{name}</h2>
           <p>Location:{location}</p>
-          <p>Orginal Price:{originalPrice}</p>
-          <p>Resale Price:{resalePrice}</p>
-          <p>Year of use:{yearsOfUse}</p>
-          <p>SellerName:{SellerName}</p>
+          <p>Orginal Price:{resale_price}</p>
+          <p>Resale Price:{original_price}</p>
+          <p>Year of use:{use_years}</p>
+          <p>seller_name:{seller_name}</p>
+
           <div className="card-actions justify-end">
             <div className="">
               <label

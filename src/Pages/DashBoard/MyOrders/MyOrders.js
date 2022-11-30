@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../Contexs/AuthProvider/AuthProvider";
 import server from "../../../utils/axios-client";
 
 const MyOrders = () => {
+  const { user } = useContext(AuthContext);
+
   const { data, isLoading } = useQuery(["my-orders"], () =>
-    server.get("order")
+    server.get(`order?email=${user?.email}`)
   );
   const orders = data?.data;
-  console.log(orders);
+  console.log("order", orders);
   return (
     <div className="overflow-x-auto w-full">
       <table className="table w-full">
@@ -43,11 +46,13 @@ const MyOrders = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="font-bold">{order.SellerName}</div>
+                    <div className="font-bold">
+                      {order?.television?.SellerName}
+                    </div>
                   </div>
                 </div>
               </td>
-              <td>{order.resalePrice}</td>
+              <td>{order?.television?.resalePrice}</td>
               <td>{order.location}</td>
               <th>
                 <button className="btn btn-ghost btn-xs">details</button>
