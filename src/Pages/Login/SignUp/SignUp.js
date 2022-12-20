@@ -40,6 +40,13 @@ export const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        server
+          .post("user", {
+            name: user.displayName,
+            email: user.email,
+            role: "buyer",
+          })
+          .then((res) => console.log(res.data));
         navigate(from, { replace: true });
         toast.success("Successfully Login");
       })

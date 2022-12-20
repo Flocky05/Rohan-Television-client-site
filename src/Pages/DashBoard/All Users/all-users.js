@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import server from "../../../utils/axios-client";
-
+import tick from "../../../images/tick/check.png";
 const AllUsers = () => {
   const { data, isLoading, refetch } = useQuery(["all-user"], () =>
     server.get("users")
@@ -10,6 +10,14 @@ const AllUsers = () => {
     server.delete(`user/${_id}`).then((_) => {
       refetch();
     });
+  };
+  const handleVerify = (_id) => {
+    server
+      .put(`user/${_id}`)
+      .then((_) => {
+        refetch();
+      })
+      .catch((err) => console.log(err));
   };
   if (!isLoading)
     return (
@@ -28,14 +36,25 @@ const AllUsers = () => {
               <tr>
                 <td>
                   <div className="flex items-center space-x-3">
-                    <div>
-                      <div className="font-bold">{user.name}</div>
+                    <div className="">
+                      <div className="font-bold flex gap-2">
+                        {user.name}
+                        {user.verified && (
+                          <img className="w-5 h-5" src={tick} alt="" />
+                        )}
+                      </div>
                     </div>
                   </div>
                 </td>
                 <td>{user.email}</td>
                 <th>
-                  <button className="btn btn-success btn-xs">Verify</button>
+                  <button
+                    className="btn btn-success btn-xs"
+                    onClick={() => handleVerify(user._id)}
+                    disabled={user.verified}
+                  >
+                    Verify
+                  </button>
                 </th>
                 <th>
                   <button
