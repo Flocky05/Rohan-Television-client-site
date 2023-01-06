@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Categories from "../Categories/Categories";
 import Team from "../Team/Team";
+import Carosoul from "./Carosoul/Carosoul";
 import { Step } from "./Coment";
+import Content from "./Content/Content";
 import { Pricing } from "./Pricing";
 import { Statistic } from "./Statistic";
 
@@ -58,9 +60,10 @@ export const Home = () => {
         </div>
       </div>
       <Categories></Categories>
-      <Pricing></Pricing>
+      <Content></Content>
       <Team></Team>
       <Step></Step>
+      <Carosoul></Carosoul>
       <Statistic></Statistic>
     </div>
   );
