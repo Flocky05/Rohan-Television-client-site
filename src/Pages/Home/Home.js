@@ -5,6 +5,7 @@ import Team from "../Team/Team";
 import Carosoul from "./Carosoul/Carosoul";
 import { Step } from "./Coment";
 import Content from "./Content/Content";
+import DiscountBanner from "./Discount/Discount";
 import { Pricing } from "./Pricing";
 import { Statistic } from "./Statistic";
 
@@ -63,6 +64,7 @@ export const Home = () => {
       <Content></Content>
       <Team></Team>
       <Step></Step>
+      <DiscountBanner></DiscountBanner>
       <Carosoul></Carosoul>
       <Statistic></Statistic>
     </div>
